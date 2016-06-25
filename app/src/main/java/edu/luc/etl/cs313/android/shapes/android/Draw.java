@@ -30,14 +30,16 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-
-		return null;
+//return null;
+		//c.getColor()
+				//c.getShape()
 	}
 
 	@Override
 	public Void onFill(final Fill f) {
 
-		return null;
+		//return null;
+
 	}
 
 	@Override
