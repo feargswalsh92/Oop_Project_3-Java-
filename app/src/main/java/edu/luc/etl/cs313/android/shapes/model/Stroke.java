@@ -21,6 +21,6 @@ public class Stroke implements Shape {
 
 	@Override
 	public <Result> Result accept(Visitor<Result> v) {
-		return null;
+		return v.onStroke(this); //fixed
 	}
 }
