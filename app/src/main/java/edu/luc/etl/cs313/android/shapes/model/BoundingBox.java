@@ -17,6 +17,7 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onFill(final Fill f) {
+
 		return null;
 	}
 
@@ -34,21 +35,25 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onRectangle(final Rectangle r) {
+
 		return null;
 	}
 
 	@Override
 	public Location onStroke(final Stroke c) {
+
 		return null;
 	}
 
 	@Override
 	public Location onOutline(final Outline o) {
+
 		return null;
 	}
 
 	@Override
 	public Location onPolygon(final Polygon s) {
+
 		return null;
 	}
 }
