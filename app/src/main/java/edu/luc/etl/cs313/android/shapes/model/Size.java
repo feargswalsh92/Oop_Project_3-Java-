@@ -6,45 +6,45 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Size implements Visitor<Integer> {
 
-	// TODO entirely your job
+	// TODO entirely your job - done besides onGroup
 
 	@Override
 	public Integer onPolygon(final Polygon p) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onCircle(final Circle c) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onGroup(final Group g) {
-		return -1;
-	}
+		return g.getShapes().size();
+	} //only works for simple right now, not complex. will work on it.
 
 	@Override
 	public Integer onRectangle(final Rectangle q) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onOutline(final Outline o) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onFill(final Fill c) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onLocation(final Location l) {
-		return -1;
+		return 1;
 	}
 
 	@Override
 	public Integer onStroke(final Stroke c) {
-		return -1;
+		return 1;
 	}
 }
