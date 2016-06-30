@@ -30,7 +30,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-//return null;
+		return null;
 		//c.getColor()
 				//c.getShape()
 	}
