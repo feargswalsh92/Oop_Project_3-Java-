@@ -67,8 +67,9 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-		final float[] pts = null;
+		final float[] pts;
 		for (Point:s.getPoints()) {
+
 			pts.append(Point);
 		}
 //not sure if this works-asking question on piazza

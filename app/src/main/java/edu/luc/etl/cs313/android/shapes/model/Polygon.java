@@ -14,6 +14,7 @@ public class Polygon extends Group {
 
 	@SuppressWarnings("unchecked")
 	public List<? extends Point> getPoints() {
+
 		return (List<? extends Point>) getShapes();
 	}
 

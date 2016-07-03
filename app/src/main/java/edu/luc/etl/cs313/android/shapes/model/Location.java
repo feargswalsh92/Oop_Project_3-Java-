@@ -13,7 +13,7 @@ public class Location implements Shape {
 		this.x = x;
 		this.y = y;
 		this.shape = shape;
-	}
+	}final int x, final int y
 
 	public Shape getShape() {
 		return shape;
