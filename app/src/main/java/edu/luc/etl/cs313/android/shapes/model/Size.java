@@ -12,7 +12,7 @@ public class Size implements Visitor<Integer> {
 	public Integer onPolygon(final Polygon p) {
 		return 1;
 	}
-
+//p.getSize
 	@Override
 	public Integer onCircle(final Circle c) {
 		return 1;

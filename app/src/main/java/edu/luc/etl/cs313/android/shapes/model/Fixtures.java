@@ -7,7 +7,8 @@ import android.graphics.Color;
  */
 public class Fixtures {
 
-	private Fixtures() { /* prevent instantiation! */ }
+	private Fixtures() {
+		/* prevent instantiation! */ }
 
 	public static final Shape simpleCircle = new Circle(50);
 
@@ -51,7 +52,7 @@ public class Fixtures {
 			)
 		)
 	);
-
+	//composite pattern
 	public static final Shape simpleOutline = new Outline(new Rectangle(80, 120));
 
 	public static final Shape simplePolygon = new Polygon(

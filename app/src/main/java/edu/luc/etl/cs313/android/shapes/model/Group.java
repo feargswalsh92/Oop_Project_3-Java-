@@ -17,7 +17,8 @@ public class Group implements Shape {
 
 	public List<? extends Shape> getShapes() {
 		return Collections.unmodifiableList(shapes);
-	}
+	}//unmodifiable sends back a version/view of list that can't be changed
+
 
 	@Override
 	public <Result> Result accept(final Visitor<Result> v) {

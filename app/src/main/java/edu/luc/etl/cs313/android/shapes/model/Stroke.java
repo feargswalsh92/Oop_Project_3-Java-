@@ -24,3 +24,4 @@ public class Stroke implements Shape {
 		return v.onStroke(this); //fixed
 	}
 }
+//impement instance variables, in fixtures it says draw red 
