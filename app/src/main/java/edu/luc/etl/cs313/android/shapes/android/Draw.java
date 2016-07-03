@@ -67,8 +67,11 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-
 		final float[] pts = null;
+		for (Point:s.getPoints()) {
+			pts.append(Point);
+		}
+//not sure if this works-asking question on piazza
 
 		canvas.drawLines(pts, paint);
 		return null;
