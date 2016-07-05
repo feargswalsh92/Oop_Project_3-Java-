@@ -19,5 +19,5 @@ public class Fill implements Shape {
 	@Override
 	public <Result> Result accept(final Visitor<Result> v) {
 		return v.onFill(this);
-	}//generic method, I don't know what the visitor is going to return but whatever is the accept method is going to return it to
+	}
 }
