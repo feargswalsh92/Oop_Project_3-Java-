@@ -6,7 +6,7 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Size implements Visitor<Integer> {
 
-	// TODO entirely your job - done besides onGroup
+	// FIXED
 
 	@Override
 	public Integer onPolygon(final Polygon p) {
@@ -21,7 +21,7 @@ public class Size implements Visitor<Integer> {
 	@Override
 	public Integer onGroup(final Group g) {
 		return g.getShapes().size();
-	} //only works for simple right now, not complex. will work on it.
+	}
 
 	@Override
 	public Integer onRectangle(final Rectangle q) {
