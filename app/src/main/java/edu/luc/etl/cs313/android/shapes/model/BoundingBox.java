@@ -17,7 +17,7 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onFill(final Fill f) {
-//final int
+
 		return null;
 	}
 
@@ -29,8 +29,8 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onLocation(final Location l) {
-
 		return null;
+		//return new Location(l.getX(), l.getY(), new Rectangle(??));
 	}
 
 	@Override

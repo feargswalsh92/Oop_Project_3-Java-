@@ -36,7 +36,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onFill(final Fill f) {
-		paint.setStyle(Style.FILL); //maybe?
+		paint.setStyle(Style.FILL);
 		return null;
 	}
 
