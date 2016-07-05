@@ -20,15 +20,10 @@ public class Draw implements Visitor<Void> {
 
 	private final Paint paint;
 
-	private int polysize;
-	private List<Float> polyList;
 
-
-	public Draw(final Canvas canvas, final Paint paint,int polysize,List<Float> PolyList) {
+	public Draw(final Canvas canvas, final Paint paint) {
 		this.canvas = canvas; // FIXED
 		this.paint = paint; // FIXED
-		this.polysize = polysize;
-		this.polyList = polyList;
 
 		paint.setStyle(Style.STROKE);
 	}
@@ -80,15 +75,21 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-		float[] pts = null;
-		polysize =  (s.getShapes().size());
+		int polysize =  (s.getPoints().size());
 
-		for (int i =2;i<polysize;i++)
-		{
-		polyList.add(getPoints(i));
+		float[] pts = new float[4*polysize];
+
+		for (int i = 0;i < polysize-1;i++) {
+			pts[4*i] = s.getPoints().get(i).getX();
+			pts[4*i+1] = s.getPoints().get(i).getY();
+			pts[4*i+2] = s.getPoints().get(i+1).getX();
+			pts[4*i+3] = s.getPoints().get(i+1).getY();
 		}
 
-
+		pts[4*(polysize-1)] = s.getPoints().get(polysize-1).getX();
+		pts[4*(polysize-1)+1] = s.getPoints().get(polysize-1).getY();
+		pts[4*(polysize-1)+2] = s.getPoints().get(0).getX();
+		pts[4*(polysize-1)+3] = s.getPoints().get(0).getY();
 
 		canvas.drawLines(pts, paint);
 		return null;

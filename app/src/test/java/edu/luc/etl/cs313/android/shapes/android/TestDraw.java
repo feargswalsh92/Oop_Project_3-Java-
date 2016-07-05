@@ -30,7 +30,7 @@ public class TestDraw {
 	@Before
 	public void setUp() {
 		inOrder = inOrder(canvas, paint);
-		draw = new Draw(canvas, paint, polypoints);
+		draw = new Draw(canvas, paint);
 	}
 
 	@After
