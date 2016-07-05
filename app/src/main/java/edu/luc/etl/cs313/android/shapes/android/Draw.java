@@ -3,7 +3,6 @@ package edu.luc.etl.cs313.android.shapes.android;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.renderscript.Float2;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +32,8 @@ public class Draw implements Visitor<Void> {
 
 		paint.setStyle(Style.STROKE);
 	}
+
+
 
 	@Override
 	public Void onCircle(final Circle c) {
@@ -80,14 +81,12 @@ public class Draw implements Visitor<Void> {
 	@Override
 	public Void onPolygon(final Polygon s) {
 		float[] pts = null;
-		polysize =  (s.getPoints().size());
+		polysize =  (s.getShapes().size());
 
-		final Iterator<Float> i = polyList.iterator();
-
-		while (i.hasNext()) {
-
-
-			}
+		for (int i =2;i<polysize;i++)
+		{
+		polyList.add(getPoints(i))	;
+		}
 
 
 
