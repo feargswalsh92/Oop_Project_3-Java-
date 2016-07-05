@@ -85,7 +85,7 @@ public class Draw implements Visitor<Void> {
 
 		for (int i =2;i<polysize;i++)
 		{
-		polyList.add(getPoints(i))	;
+		polyList.add(getPoints(i));
 		}
 
 
