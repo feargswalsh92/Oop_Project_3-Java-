@@ -3,6 +3,11 @@ package edu.luc.etl.cs313.android.shapes.android;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.renderscript.Float2;
+
+import java.util.Iterator;
+import java.util.List;
+
 import edu.luc.etl.cs313.android.shapes.model.*;
 
 /**
@@ -16,9 +21,16 @@ public class Draw implements Visitor<Void> {
 
 	private final Paint paint;
 
-	public Draw(final Canvas canvas, final Paint paint) {
+	private int polysize;
+	private List<Float> polyList;
+
+
+	public Draw(final Canvas canvas, final Paint paint,int polysize,List<Float> PolyList) {
 		this.canvas = canvas; // FIXED
 		this.paint = paint; // FIXED
+		this.polysize = polysize;
+		this.polyList = polyList;
+
 		paint.setStyle(Style.STROKE);
 	}
 
@@ -67,12 +79,17 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-		final float[] pts;
-		for (Point:s.getPoints()) {
+		float[] pts = null;
+		polysize =  (s.getPoints().size());
 
-			pts.append(Point);
-		}
-//not sure if this works-asking question on piazza
+		final Iterator<Float> i = polyList.iterator();
+
+		while (i.hasNext()) {
+
+
+			}
+
+
 
 		canvas.drawLines(pts, paint);
 		return null;

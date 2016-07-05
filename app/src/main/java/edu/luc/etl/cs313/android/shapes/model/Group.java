@@ -22,6 +22,7 @@ public class Group implements Shape {
 
 	@Override
 	public <Result> Result accept(final Visitor<Result> v) {
+
 		return v.onGroup(this);
 	}
 

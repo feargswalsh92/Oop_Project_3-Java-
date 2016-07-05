@@ -9,6 +9,7 @@ import java.util.List;
 public class Polygon extends Group {
 
 	public Polygon(final Point... points) {
+
 		super(points);
 	}
 
