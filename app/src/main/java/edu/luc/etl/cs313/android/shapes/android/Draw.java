@@ -14,7 +14,7 @@ import edu.luc.etl.cs313.android.shapes.model.*;
  */
 public class Draw implements Visitor<Void> {
 
-	// TODO entirely your job (except onCircle)
+	// FIXED entirely your job (except onCircle)
 
 	private final Canvas canvas;
 
@@ -44,13 +44,16 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onFill(final Fill f) {
-		paint.setStyle(Style.FILL);
+		paint.setStyle(Style.FILL_AND_STROKE);
 		return null;
 	}
 
 	@Override
 	public Void onGroup(final Group g) {
-
+		List<? extends Shape> shapeList = g.getShapes();
+		for (Shape s : shapeList){
+			s.accept(this);
+		}
 		return null;
 	}
 
@@ -69,9 +72,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onOutline(Outline o) {
-
-		paint.setStyle(Style.STROKE); //outline class accomplishes oppposite of fill class
-
+		paint.setStyle(Style.STROKE); //outline class accomplishes opposite of fill class
 		return null;
 	}
 

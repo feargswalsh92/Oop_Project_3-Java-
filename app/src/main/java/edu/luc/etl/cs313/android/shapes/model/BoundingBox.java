@@ -29,8 +29,9 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onLocation(final Location l) {
-		return null;
-		//return new Location(l.getX(), l.getY(), new Rectangle(??));
+		Shape s = l.getShape();
+
+		return new Location(l.getX(), l.getY(), s.accept(this);
 	}
 
 	@Override
@@ -55,8 +56,6 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onPolygon(final Polygon s) {
-		//final 
-
-		return null;
+		return onGroup(s);
 	}
 }
