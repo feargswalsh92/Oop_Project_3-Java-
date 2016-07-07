@@ -70,6 +70,8 @@ public class Draw implements Visitor<Void> {
 	@Override
 	public Void onOutline(Outline o) {
 
+		paint.setStyle(Style.STROKE); //outline class accomplishes oppposite of fill class
+
 		return null;
 	}
 
