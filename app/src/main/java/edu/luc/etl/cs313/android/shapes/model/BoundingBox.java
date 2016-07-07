@@ -23,7 +23,10 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onGroup(final Group g) {
-
+		/*Shape s = g.getShapes();
+		for (Shape s : shapeList){
+			return new Location((s.accept(this));
+		}*/
 		return null;
 	}
 
@@ -31,7 +34,7 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onLocation(final Location l) {
 		Shape s = l.getShape();
 
-		return new Location(l.getX(), l.getY(), s.accept(this);
+		return new Location(l.getX(), l.getY(), s.accept(this));
 	}
 
 	@Override
@@ -56,6 +59,7 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onPolygon(final Polygon s) {
+
 		return onGroup(s);
 	}
 }
