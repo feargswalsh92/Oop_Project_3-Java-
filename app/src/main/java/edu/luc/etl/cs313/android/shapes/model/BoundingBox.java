@@ -31,13 +31,14 @@ public class BoundingBox implements Visitor<Location> {
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
 
-		int maxX = totalBox.getX() + ...;
-		int maxY = ;
+		Rectangle maxShape = (Rectangle) totalBox.getShape();
+		int maxX = minX + maxShape.getWidth() ;
+		int maxY = minY + maxShape.getHeight();
 
 		for (int i = 1; i < shapeList.size(); i++) {
 			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
 			// Now merge nextBox and totalBox
-			if (nextBox minX < totalBox minX) {
+			/*if (nextBox minX < totalBox minX) {
 				minX = nextBox minX;
 			}
 
@@ -51,7 +52,7 @@ public class BoundingBox implements Visitor<Location> {
 
 			if (nextBox maxY > totalBox maxY) {
 				maxY = nextBox maxY;
-			}
+			} */
 
 			// Calculate the minimum totalBox and nextBox x and y coordinates -
 			// those are the x and y coordinates of the merged Location/bounding box.

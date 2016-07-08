@@ -1,11 +1,17 @@
 package edu.luc.etl.cs313.android.shapes.model;
 
-import static edu.luc.etl.cs313.android.shapes.model.Fixtures.*;
-import static org.junit.Assert.assertEquals;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.complexGroup;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleFill;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleGroup;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleLocation;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleOutline;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simplePolygon;
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleStroke;
+import static org.junit.Assert.assertEquals;
 
 public class TestBoundingBox {
 
