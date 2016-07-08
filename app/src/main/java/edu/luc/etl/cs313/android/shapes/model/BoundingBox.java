@@ -27,34 +27,40 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onGroup(final Group g) {
 		List<? extends Shape> shapeList = g.getShapes();
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
-		int minX, minY, maxX, maxY;
+
+		int minX = totalBox.getX();
+		int minY = totalBox.getY();
+
+		int maxX = totalBox.getX() + ...;
+		int maxY = ;
+
 		for (int i = 1; i < shapeList.size(); i++) {
 			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
-
 			// Now merge nextBox and totalBox
-			nextBox.equals(totalBox);
-			nextBox = totalBox;
+			if (nextBox minX < totalBox minX) {
+				minX = nextBox minX;
+			}
+
+			if (nextBox maxX > totalBox maxX) {
+				maxX = nextBox minX;
+			}
+
+			if (nextBox minY < totalBox minY) {
+				minY = nextBox minY;
+			}
+
+			if (nextBox maxY > totalBox maxY) {
+				maxY = nextBox maxY;
+			}
 
 			// Calculate the minimum totalBox and nextBox x and y coordinates -
 			// those are the x and y coordinates of the merged Location/bounding box.
-			minX = nextBox.getX(); //maybe?
-			minY = nextBox.getY();
 			// Then calculate the maximum totalBox and nextBox x and y coordinates -
 			// those minus the minimum x and y are the width and height of the needed
 			// new totalBox Location's Rectangle for the merged Location/bounding box.
-			maxX = nextBox.getX();
-			maxY = nextBox.getY();
 			// Finally, update totalBox like this (this is the merged bounding box):
 			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 		}
-
-// Just as an example, if you are processing a Polygon's Points by passing the
-// Polygon object to onGroup (because a Polygon is a Group) then the initial
-// bounding box you'll get will be a Location with the coordinates of the first
-// Point and with a Rectangle of width and height 0. When you process the second
-// Point in the Polygon/Group you will get a Rectangle that surrounds the line
-// that would be drawn between those two Points at the minimum x and y coordinates
-// of both Points, and so on for all future Points.
 		return totalBox;
 	}
 
