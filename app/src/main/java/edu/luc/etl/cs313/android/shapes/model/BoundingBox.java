@@ -25,11 +25,33 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onGroup(final Group g) {
-		/*List<? extends Shape> shapeList = g.getShapes();
-		for (Shape s : shapeList){
-			return new Location(0, 0, s);
-		}*/
-		return null;
+		List<? extends Shape> shapeList = g.getShapes();
+		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
+		for (int i = 1; i < shapeList.size(); i++) {
+			Location nextBox = shapeList.get(i).accept(this); // the next bounding box
+			// Now merge nextBox and totalBox
+
+			// Calculate the minimum totalBox and nextBox x and y coordinates -
+			// those are the x and y coordinates of the merged Location/bounding box.
+			int minX = totalBox.getX(); //maybe?
+			int minY = totalBox.getY();
+			// Then calculate the maximum totalBox and nextBox x and y coordinates -
+			// those minus the minimum x and y are the width and height of the needed
+			// new totalBox Location's Rectangle for the merged Location/bounding box.
+			int maxX = ;
+			int maxY = ;
+			// Finally, update totalBox like this (this is the merged bounding box):
+			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
+		}
+
+// Just as an example, if you are processing a Polygon's Points by passing the
+// Polygon object to onGroup (because a Polygon is a Group) then the initial
+// bounding box you'll get will be a Location with the coordinates of the first
+// Point and with a Rectangle of width and height 0. When you process the second
+// Point in the Polygon/Group you will get a Rectangle that surrounds the line
+// that would be drawn between those two Points at the minimum x and y coordinates
+// of both Points, and so on for all future Points.
+		return totalBox;
 	}
 
 	@Override
@@ -63,6 +85,7 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onPolygon(final Polygon s) {
+
 		return onGroup(s);
 	}
 }
