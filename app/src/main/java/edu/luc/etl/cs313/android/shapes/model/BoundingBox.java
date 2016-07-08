@@ -27,20 +27,23 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onGroup(final Group g) {
 		List<? extends Shape> shapeList = g.getShapes();
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
+		int minX, minY, maxX, maxY;
 		for (int i = 1; i < shapeList.size(); i++) {
-			Location nextBox = shapeList.get(i).accept(this);
-			nextBox.equals(totalBox);// the next bounding box
+			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
+
 			// Now merge nextBox and totalBox
+			nextBox.equals(totalBox);
+			nextBox = totalBox;
 
 			// Calculate the minimum totalBox and nextBox x and y coordinates -
 			// those are the x and y coordinates of the merged Location/bounding box.
-			int minX = nextBox.getX(); //maybe?
-			int minY = nextBox.getY();
+			minX = nextBox.getX(); //maybe?
+			minY = nextBox.getY();
 			// Then calculate the maximum totalBox and nextBox x and y coordinates -
 			// those minus the minimum x and y are the width and height of the needed
 			// new totalBox Location's Rectangle for the merged Location/bounding box.
-			int maxX = nextBox.getX();
-			int maxY = nextBox.getY();
+			maxX = nextBox.getX();
+			maxY = nextBox.getY();
 			// Finally, update totalBox like this (this is the merged bounding box):
 			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 		}
