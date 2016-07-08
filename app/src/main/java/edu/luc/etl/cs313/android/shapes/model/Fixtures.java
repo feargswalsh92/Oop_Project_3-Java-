@@ -21,6 +21,7 @@ public class Fixtures {
 	public static final Shape simpleGroup = new Group(
 		new Location(200, 100, new Circle(50)),
 		new Location(400, 300, new Rectangle(100, 50))
+
 	);
 
 	public static final Shape complexGroup = new Location(50, 100,
