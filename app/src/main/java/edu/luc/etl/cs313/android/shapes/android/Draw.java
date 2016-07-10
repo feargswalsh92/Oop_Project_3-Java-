@@ -38,17 +38,21 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
+		int current = paint.getColor();
 		paint.setColor(c.getColor());
 		Shape s = c.getShape();
 		s.accept(this);
+		paint.setColor(current);
 		return null;
 	}
 
 	@Override
 	public Void onFill(final Fill f) {
+		Style current = paint.getStyle();
 		paint.setStyle(Style.FILL_AND_STROKE);
 		Shape s = f.getShape();
 		s.accept(this);
+		paint.setStyle(current);
 		return null;
 	}
 
@@ -79,9 +83,11 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onOutline(Outline o) {
+		Style current = paint.getStyle();
 		paint.setStyle(Style.STROKE); //outline class accomplishes opposite of fill class
 		Shape s = o.getShape();
 		s.accept(this);
+		paint.setStyle(current);
 		return null;
 	}
 
