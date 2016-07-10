@@ -1,6 +1,8 @@
 package edu.luc.etl.cs313.android.shapes.model;
 import java.util.List;
 
+import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleOutline;
+
 /**
  * A shape visitor for calculating the bounding box, that is, the smallest
  * rectangle containing the shape. The resulting bounding box is returned as a
@@ -27,65 +29,36 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onGroup(final Group g) {
 		List<? extends Shape> shapeList = g.getShapes();
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
+		Shape totalR = totalBox.getShape();
+		Location B = totalR.accept(this);
 
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
-
-		Rectangle maxShape = (Rectangle) totalBox.getShape();
-		int maxX = minX + maxShape.getWidth() ;
-		int maxY = minY + maxShape.getHeight();
-		/*int minnextX;
-		int minnextY;
-		int maxnextX;
-		int maxnextY;*/
+		int maxX = minX + B.getX();
+		int maxY = minX + B.getY();
 
 		for (int i = 1; i < shapeList.size(); i++) {
 			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
-			int minnextX = nextBox.getX();
-			int minnextY = nextBox.getY();
-			Rectangle nextShape = (Rectangle) nextBox.getShape();
-			int maxnextX = nextBox.getX() + nextShape.getWidth();
-			int maxnextY = nextBox.getY() + nextShape.getHeight();
+			Shape nextR = totalBox.getShape();
+			Location nextB = totalR.accept(this);
 
+			int minNextX = nextBox.getX();
+			int minNextY = nextBox.getY();
+			int maxNextX = minX + nextB.getX();
+			int maxNextY = minX + nextB.getY();
 
-			if (minnextX < minX){
-				minX = minnextX;
+			if (minNextX < minX){
+				minX = minNextX;
 			}
-			if (minnextY <minY){
-				minY = minnextY;
+			if (minNextY <minY){
+				minY = minNextY;
 			}
-
-			if (maxnextX < maxX){
-				maxX = maxnextX;
+			if (maxNextX < maxX){
+				maxX = maxNextX;
 			}
-
-			if( maxnextY < maxY){
-				maxY = maxnextY;
+			if( maxNextY < maxY){
+				maxY = maxNextY;
 			}
-
-			// Now merge nextBox and totalBox
-			/*if (nextBox minX < totalBox minX) {
-				minX = nextBox minX;
-			}
-
-			if (nextBox maxX > totalBox maxX) {
-				maxX = nextBox minX;
-			}
-
-			if (nextBox minY < totalBox minY) {
-				minY = nextBox minY;
-			}
-
-			if (nextBox maxY > totalBox maxY) {
-				maxY = nextBox maxY;
-			} */
-
-			// Calculate the minimum totalBox and nextBox x and y coordinates -
-			// those are the x and y coordinates of the merged Location/bounding box.
-			// Then calculate the maximum totalBox and nextBox x and y coordinates -
-			// those minus the minimum x and y are the width and height of the needed
-			// new totalBox Location's Rectangle for the merged Location/bounding box.
-			// Finally, update totalBox like this (this is the merged bounding box):
 			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 		}
 		return totalBox;
@@ -93,10 +66,10 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onLocation(final Location l) {
-		Shape s = (Rectangle) l.getShape();
+		Shape s = l.getShape();
+		Location newL = s.accept(this);
 
-
-		return new Location(l.getX(), l.getY(), s);
+		return new Location(newL.getX() + l.getX(), newL.getX() + l.getY(), newL.getShape());
 	}
 
 	@Override
