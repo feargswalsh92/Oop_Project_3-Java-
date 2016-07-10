@@ -31,7 +31,7 @@ public class BoundingBox implements Visitor<Location> {
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
 		Shape totalR = totalBox.getShape();
 		Location B = totalR.accept(this);
-
+		//now we have the rect?
 
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
