@@ -36,7 +36,7 @@ public class BoundingBox implements Visitor<Location> {
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
 		int maxX = minX + r.getWidth();
-		int maxY = minX + r.getHeight();
+		int maxY = minY + r.getHeight();
 
 		for (int i = 1; i < shapeList.size(); i++) {
 			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
@@ -45,8 +45,8 @@ public class BoundingBox implements Visitor<Location> {
 
 			int minNextX = nextBox.getX();
 			int minNextY = nextBox.getY();
-			int maxNextX = minX + nextR.getWidth();
-			int maxNextY = minX + nextR.getHeight();
+			int maxNextX = minNextX + nextR.getWidth();
+			int maxNextY = minNextY + nextR.getHeight();
 
 			if (minNextX < minX){
 				minX = minNextX;
@@ -60,8 +60,9 @@ public class BoundingBox implements Visitor<Location> {
 			if(maxY < maxNextY){
 				maxY = maxNextY;
 			}
-			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
+			;
 		}
+		totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 
 		return totalBox;
 	}

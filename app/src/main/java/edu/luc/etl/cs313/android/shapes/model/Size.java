@@ -23,7 +23,7 @@ public class Size implements Visitor<Integer> {
 		int totalDim = 0;
 		List<? extends Shape> ShapeList = g.getShapes();
 		for (Shape s:ShapeList){
-			totalDim++;
+			totalDim += s.accept(this);
 		}
 		return totalDim;
 	}
@@ -39,6 +39,7 @@ public class Size implements Visitor<Integer> {
 	@Override
 	public Integer onOutline(final Outline o) {
 		Shape s = o.getShape();
+
 		return s.accept(this);
 	}
 
@@ -59,6 +60,7 @@ public class Size implements Visitor<Integer> {
 	public Integer onStroke(final Stroke c) {
 
 				Shape s = c.getShape();
+
 		return s.accept(this);
 	}
 }
