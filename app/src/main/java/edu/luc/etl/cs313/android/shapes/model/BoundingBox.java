@@ -22,7 +22,7 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onFill(final Fill f) {
 		Shape s = f.getShape();
 
-		return new Location(0, 0, s);
+		return new Location(0, 0, s.accept(this));
 	}
 
 	@Override
@@ -30,13 +30,13 @@ public class BoundingBox implements Visitor<Location> {
 		List<? extends Shape> shapeList = g.getShapes();
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
 		Shape totalR = totalBox.getShape();
-		Location B = totalR.accept(this);
+
 		//now we have the rect?
 
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
-		int maxX = minX + B.getX();
-		int maxY = minX + B.getY();
+		int maxX = minX + totalBox.getX();
+		int maxY = minX + totalBox.getY();
 
 		for (int i = 1; i < shapeList.size(); i++) {
 			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
@@ -51,17 +51,18 @@ public class BoundingBox implements Visitor<Location> {
 			if (minNextX < minX){
 				minX = minNextX;
 			}
-			if (minNextY <minY){
+			if (minNextY < minY){
 				minY = minNextY;
 			}
-			if (maxNextX < maxX){
+			if (maxX < maxNextX){
 				maxX = maxNextX;
 			}
-			if( maxNextY < maxY){
+			if(maxY < maxNextY){
 				maxY = maxNextY;
 			}
 			totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 		}
+
 		return totalBox;
 	}
 
@@ -85,14 +86,14 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onStroke(final Stroke c) {
 		Shape s = c.getShape();
 
-		return new Location(0, 0, s);
+		return new Location(0, 0, s.accept(this));
 	}
 
 	@Override
 	public Location onOutline(final Outline o) {
 		Shape s = o.getShape();
 
-		return new Location(0, 0, s);
+		return new Location(0, 0, s.accept(this));
 	}
 
 	@Override
