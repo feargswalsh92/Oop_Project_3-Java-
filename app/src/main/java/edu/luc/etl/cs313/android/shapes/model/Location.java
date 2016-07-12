@@ -19,9 +19,7 @@ public class Location implements Shape {
 		return shape;
 	}
 
-	public int getX() {
-		return x;
-	}
+	public int getX() { return x; }
 
 	public int getY() {
 		return y;

@@ -29,7 +29,6 @@ public class Draw implements Visitor<Void> {
 	}
 
 
-
 	@Override
 	public Void onCircle(final Circle c) {
 		canvas.drawCircle(0, 0, c.getRadius(), paint);
@@ -84,7 +83,7 @@ public class Draw implements Visitor<Void> {
 	@Override
 	public Void onOutline(Outline o) {
 		Style current = paint.getStyle();
-		paint.setStyle(Style.STROKE); //outline class accomplishes opposite of fill class
+		paint.setStyle(Style.STROKE);
 		Shape s = o.getShape();
 		s.accept(this);
 		paint.setStyle(current);

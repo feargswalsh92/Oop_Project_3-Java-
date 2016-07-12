@@ -27,9 +27,6 @@ public class Size implements Visitor<Integer> {
 		}
 		return totalDim;
 	}
-	//iterate through list of shapes
-	//add size of each shape together
-	//send visitor to the returned total size
 
 	@Override
 	public Integer onRectangle(final Rectangle q) {

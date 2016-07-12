@@ -15,7 +15,6 @@ public class Rectangle implements Shape {
 	}
 
 
-
 	public int getWidth() {
 		return width;
 	}

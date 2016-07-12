@@ -10,7 +10,7 @@ import static edu.luc.etl.cs313.android.shapes.model.Fixtures.simpleOutline;
  */
 public class BoundingBox implements Visitor<Location> {
 
-	// TODO entirely your job (except onCircle)
+	// FIXED entirely your job (except onCircle)
 
 	@Override
 	public Location onCircle(final Circle c) {
@@ -31,17 +31,14 @@ public class BoundingBox implements Visitor<Location> {
 		Location totalBox = shapeList.get(0).accept(this); // the first bounding box
 		Rectangle r   = (Rectangle)totalBox.getShape();
 
-		//now we have the rect?
-
 		int minX = totalBox.getX();
 		int minY = totalBox.getY();
 		int maxX = minX + r.getWidth();
 		int maxY = minY + r.getHeight();
 
 		for (int i = 1; i < shapeList.size(); i++) {
-			Location nextBox = shapeList.get(i).accept(this);// the next bounding box
+			Location nextBox = shapeList.get(i).accept(this); // the next bounding box
 			Rectangle nextR = (Rectangle)nextBox.getShape();
-
 
 			int minNextX = nextBox.getX();
 			int minNextY = nextBox.getY();
@@ -60,7 +57,6 @@ public class BoundingBox implements Visitor<Location> {
 			if(maxY < maxNextY){
 				maxY = maxNextY;
 			}
-			;
 		}
 		totalBox = new Location(minX, minY, new Rectangle(maxX - minX, maxY - minY));
 
